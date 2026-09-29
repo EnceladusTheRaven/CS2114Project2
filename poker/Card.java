@@ -5,7 +5,7 @@ package poker;
  *  Follow it with additional details about its purpose, what abstraction
  *  it represents, and how to use it.
  * 
- *  @author rjlai
+ *  @author Robert Laing (rlaing4308)
  *  @version Sep 28, 2026
  */
 public class Card
