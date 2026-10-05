@@ -12,6 +12,9 @@ public class Card
 {
     //~ Fields ................................................................
 
+    private int value; // The card's value 1-13
+    private String suit; // The card's suit
+    
     //~ Constructors ..........................................................
 
     //~Public  Methods ........................................................
