@@ -2,12 +2,18 @@ package poker;
 public class Hand
 {
 
-    public Hand()
-    {
-        // TODO Auto-generated constructor stub
-    }
     //~ Fields ................................................................
 
+    // ----------------------------------------------------------
+    /**
+     * Create a new Hand object.
+     * @param hole
+     * @param community
+     */
+    public Hand(LinkedChain<Card> hole, LinkedChain<Card> community) {
+        
+    }
+    
     //~ Constructors ..........................................................
 
     //~Public  Methods ........................................................

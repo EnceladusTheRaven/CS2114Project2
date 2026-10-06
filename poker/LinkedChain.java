@@ -2,10 +2,14 @@ package poker;
 public class LinkedChain<T>
 {
 
-    public LinkedChain()
-    {
-        // TODO Auto-generated constructor stub
+    private Node<T> head; 
+    private int numberOfEntries;
+    
+    public LinkedChain() {
+        head = null;
+        numberOfEntries = 0;
     }
+    
     //~ Fields ................................................................
 
     //~ Constructors ..........................................................
