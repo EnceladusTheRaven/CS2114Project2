@@ -29,7 +29,7 @@ Attribution:
 | BetTest         | Prabhav          | Wrote, GenAI assisted   |
 | HandTest        | Robert           | Wrote, GenAI assisted   |
 | PlayerTest      | Shrey            | Wrote, GenAI assisted   |
-| OpponentTest    | Jonathan         | Right, GenAI assisted   |
-| TableTest       | Prabhav          | Right                   |
+| OpponentTest    | Jonathan         | Wrote, GenAI assisted   |
+| TableTest       | Prabhav          | Wrote                   |
 
 GenAI was used to mostly assist with the test cases, and in the case of Hand, help find bugs because of the complexity of the code.
