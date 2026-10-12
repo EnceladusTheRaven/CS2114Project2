@@ -67,4 +67,20 @@ public class Card
         }
         return false;
     }
+    
+    public String toString() {
+        String cardName = String.valueOf(value);
+        
+        if (value == 1) {
+            cardName = "Ace";
+        } else if (value == 11) {
+            cardName = "Jack";
+        } else if (value == 12) {
+            cardName = "Queen";
+        } else if (value == 13) {
+            cardName = "King";
+        }
+        
+        return cardName + " of " + suit;
+    }
 }
