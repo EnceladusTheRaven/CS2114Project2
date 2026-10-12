@@ -171,7 +171,7 @@ public class Hand
         int[] values = new int[5];
         for (int i = 0; i < 5; i++)
         {
-            int r = five[i].getValue    ();
+            int r = five[i].getValue();
             if (r == 1) {
                 values[i] = ACE_HIGH;
             } else {

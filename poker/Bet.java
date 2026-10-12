@@ -1,22 +1,6 @@
 package poker;
 public class Bet
 {
-    /**
-     * The possible betting actions.
-     */
-    public enum Action
-    {
-        BET, CALL, RAISE
-    }
-
-    /**
-     * The possible betting rounds.
-     */
-    public enum Street
-    {
-        PREFLOP, FLOP, TURN, RIVER
-    }
-
     private final String bettor;
     private final Action action;
     private final int amount;
@@ -30,6 +14,10 @@ public class Bet
      * @param amount the number of chips wagered
      * @param street the betting round
      * @throws IllegalArgumentException if an argument is invalid
+     * @throws IllegalArgumentException if any argument is null, the amount is
+     *                                  not positive, or the action is CHECK
+     *                                  or FOLD (those move no chips)
+
      */
     public Bet(String bettor, Action action, int amount, Street street)
     {
@@ -37,6 +25,12 @@ public class Bet
         {
             throw new IllegalArgumentException(
                     "Arguments cannot be null.");
+        }
+        
+        if (action == Action.CHECK || action == Action.FOLD)
+        {
+            throw new IllegalArgumentException(
+                    "Only BET, CALL and RAISE put chips in the pot.");
         }
 
         if (amount <= 0)

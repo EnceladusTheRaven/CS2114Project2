@@ -32,6 +32,43 @@ public class Player
         this.input = new Scanner(System.in);
         this.startingChips = chips;
     }
+    
+    /**
+     * Creates a player that reads from the given Scanner, so the whole
+     * program can share one Scanner on System.in.
+     *
+     * @param name  the player's name
+     * @param chips the starting chips
+     * @param input where the player's choices are read from
+     * @throws IllegalArgumentException if name or input is null, or chips is
+     *                                  negative
+     */
+    public Player(String name, int chips, Scanner input)
+    {
+        if (name == null)
+        {
+            throw new IllegalArgumentException("Name cannot be null");
+        }
+ 
+        if (chips < 0)
+        {
+            throw new IllegalArgumentException("Chips cannot be negative");
+        }
+ 
+        if (input == null)
+        {
+            throw new IllegalArgumentException("Input cannot be null");
+        }
+ 
+        this.name = name;
+        this.chips = chips;
+        this.currentBet = 0;
+        this.holeCards = new LinkedChain<>();
+        this.folded = false;
+        this.input = input;
+        this.startingChips = chips;
+    }
+
 
     public String getName()
     {

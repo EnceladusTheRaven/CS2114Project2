@@ -320,14 +320,13 @@ public class LinkedChain<T>
 
     /**
      * Copies the elements, in order, into a new array. Usage: Card[] cards =
-     * chain.toArray(new Card[0]);
+     * chain.toArray();
      * 
      * @return Array version of the LinkedList
      */
-    @SuppressWarnings("unchecked")
-    public T[] toArray()
+    public Object[] toArray()
     {
-        T[] result = (T[])new Object[size];
+        Object[] result = new Object[size];
         int i = 0;
         Node<T> current = head;
         while (current != null)

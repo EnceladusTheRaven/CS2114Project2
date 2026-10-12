@@ -25,7 +25,7 @@ public class Deck
     {
         int n = cards.size();
         Card[] temp = new Card[n];
-        for (int i = 0; i < cards.size() - 1; i++)
+        for (int i = 0; i < n; i++)
         {
             temp[i] = cards.removeFirst();
         }
