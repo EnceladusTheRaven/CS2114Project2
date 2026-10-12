@@ -22,7 +22,7 @@ Attribution:
 | Hand            | Robert           | Wrote, GenAI caught bugs|
 | Player          | Shrey            | Wrote                   |
 | Opponent        | Jonathan         | Wrote                   |
-| Table           | Prabhav          | Wrote                   |
+| Table           | Prabhav, Robert          | Prabhav wrote the instance variables, constructors, and setters. Robert Created the game loop with some assistance from GenAI.                   |
 | CardTest        | Shrey            | Wrote                   |
 | LinkedChainTest | Robert           | Wrote, GenAI assisted   |
 | DeckTest        | Jonathan         | Wrote, GenAI assisted   |
@@ -32,4 +32,4 @@ Attribution:
 | OpponentTest    | Jonathan         | Wrote, GenAI assisted   |
 | TableTest       | Prabhav          | Wrote                   |
 
-GenAI was used to mostly assist with the test cases, and in the case of Hand, help find bugs because of the complexity of the code.
+GenAI was used to mostly assist with the test cases, and in the case of Hand, help find bugs because of the complexity of the code. GenAI also helped guide the creation of the game loop.
