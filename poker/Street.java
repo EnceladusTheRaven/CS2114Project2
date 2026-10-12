@@ -1,10 +1,9 @@
 package poker;
-public class Street
+
+public enum Street
 {
-    //~ Fields ................................................................
-
-    //~ Constructors ..........................................................
-
-    //~Public  Methods ........................................................
-
+    PREFLOP,
+    FLOP,
+    TURN,
+    RIVER
 }

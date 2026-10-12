@@ -192,7 +192,7 @@ public class Opponent
         {
             if (canRaise && random.nextInt(100) < 60)
             {
-                return Actino.RAISE;
+                return Action.RAISE;
             }
             return Action.CALL;
         }
