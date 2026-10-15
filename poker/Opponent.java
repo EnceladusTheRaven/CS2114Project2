@@ -16,13 +16,37 @@ public class Opponent
     private LinkedChain<Card> communityCards;
     private Random random;
     
+    /**
+     * handles the personality
+     */
+    public enum Personality
+    {
+        /** the smart decisions */
+        SMART,
+        /** bluffs often */
+        BLUFF,
+        /** makes bad decisions */
+        DUMB
+    }
+    private Personality personality;
     //~ Constructors ..........................................................
+    /**
+     * creates opponent default to smart
+     * if no personality
+     * @param name the name
+     * @param chips the amount of starting chips
+     */
+    public Opponent(String name, int chips)
+    {
+        this(name, chips, Personality.SMART);
+    }
     /**
      * creates an opponent
      * @param name the opponents name
      * @param chips starting chips
+     * @param personality personality of opponent
      */
-    public Opponent(String name, int chips)
+    public Opponent(String name, int chips, Personality personality)
     {
         if (name == null)
         {
@@ -32,12 +56,15 @@ public class Opponent
         {
             throw new IllegalArgumentException("Chips cannot be negative");
         }
+        if (personality == null)
+            throw new IllegalArgumentException("Personality cannot be null");
         this.name = name;
         this.chips = chips;
         this.currentBet = 0;
         this.holeCards = new LinkedChain<>();
         this.folded = false;
         this.communityCards = null;
+        this.personality = personality;
         this.random = new Random();
     }
     //~Public  Methods ........................................................
@@ -59,6 +86,27 @@ public class Opponent
         return chips;
     }
     
+    /**
+     * gets the personality
+     * @return personality returns the personality
+     */
+    public Personality getPersonality()
+    {
+        return personality;
+    }
+    
+    /**
+     * sets the personality
+     * @param personality new personality
+     */
+    public void setPersonality(Personality personality)
+    {
+        if (personality == null)
+        {
+            throw new IllegalArgumentException("Personality cannot be null");
+        }
+        this.personality = personality;
+    }
     /**
      * get the current bet
      * @return int the number of the current bet
@@ -88,6 +136,7 @@ public class Opponent
     
     /**
      * receives the card
+     * @param c card that is received
      */
     public void receiveCard(Card c)
     {
@@ -104,6 +153,7 @@ public class Opponent
     
     /**
      * places the bet
+     * @param amount amount that is bet
      */
     public void placeBet(int amount)
     {
@@ -117,6 +167,7 @@ public class Opponent
     
     /**
      * determines the amount of win chips
+     * @param amount amount that is won
      */
     public void winChips(int amount)
     {
@@ -155,6 +206,7 @@ public class Opponent
     
     /**
      * sets up the community cards
+     * @param community the linked chain of community cards
      */
     public void setCommunityCards(LinkedChain<Card> community)
     {
@@ -162,11 +214,32 @@ public class Opponent
     }
     
     /**
-     * Determines what the opponent will do based on the current cards 
-     * on the table
-     * @return Action returns the action to be done
+     * chooses the action based on personality
+     * @return Action the action that is returned
+     * @param toCall the amount to call
+     * @param minRaise the minimum amount raised
      */
     public Action chooseAction(int toCall, int minRaise)
+    {
+        switch (personality)
+        {
+            case BLUFF:
+                return bluffAction(toCall, minRaise);
+            case DUMB:
+                return dumbAction(toCall, minRaise);
+            default:
+                return smartAction(toCall, minRaise);
+        }
+    }
+    
+    /**
+     * Determines what the opponent will do based on the current cards 
+     * on the table (SMART)
+     * @return Action returns the action to be done
+     * @param toCall the amount to call
+     * @param minRaise the minimum amount to raise
+     */
+    public Action smartAction(int toCall, int minRaise)
     {
         int strength = evaluateStrength();
         if (toCall <= 0)
@@ -209,17 +282,90 @@ public class Opponent
     }
     
     /**
+     * Does a whole lot of bluffing for the action (BLUFF)
+     * @return Action returns a bluffing action
+     * @param toCall the amount to call
+     * @param minRaise the minimum amount to raise
+     */
+    private Action bluffAction(int toCall, int minRaise)
+    {
+        if (toCall <= 0)
+        {
+            if (chips >= minRaise)
+            {
+                return Action.BET;
+            }
+            return Action.CHECK;
+        }
+        if (chips > toCall + minRaise)
+        {
+            return Action.RAISE;
+        }
+        return Action.CALL;
+    }
+    
+    /**
+     * returns a action that is a bad decision (DUMB)
+     * @return Action returns a dumb action
+     */
+    private Action dumbAction(int toCall, int minRaise)
+    {
+        int strength = evaluateStrength();
+        if (toCall <= 0)
+        {
+            boolean canBet = chips >= minRaise;
+            if (canBet && strength == WEAK && random.nextInt(100) < 20)
+            {
+                return Action.BET;
+            }
+            return Action.CHECK;
+        }
+        if (strength == STRONG)
+        {
+            if (random.nextInt(100) < 60)
+            {
+                return Action.FOLD;
+            }
+            return Action.CALL;
+        }
+        if (strength == MEDIUM)
+        {
+            if (random.nextInt(100) < 40)
+            {
+                return Action.FOLD;
+            }
+            return Action.CALL;
+        }
+        if (random.nextInt(100) < 15)
+        {
+            return Action.FOLD;
+        }
+        return Action.CALL;
+    }
+    
+    /**
      * chooses the amount to raise based on how strong of a hand
      * @return int the amount raised
+     * @param minRaise the minimum amount to raise
      */
     public int chooseRaiseAmount(int minRaise)
     {
         int amount = minRaise;
-        if (evaluateStrength() == STRONG && random.nextInt(100) < 40)
+        switch (personality)
         {
-            amount = minRaise * 2;
-        }
-        return Math.min(amount, chips);
+            case BLUFF:
+                amount = minRaise * (random.nextInt(100) < 50 ? 3 : 2);
+                break;
+            case DUMB:
+                amount = minRaise * (1 + random.nextInt(3));
+                break;
+            default:
+                if (evaluateStrength() == STRONG && random.nextInt(100) < 40)
+                {
+                    amount = minRaise * 2;
+                } 
+        }  
+        return Math.min(amount, chips);   
     }
     
     /**
