@@ -23,6 +23,7 @@ Attribution:
 | Player          | Shrey            | Wrote                   |
 | Opponent        | Jonathan         | Wrote                   |
 | Table           | Prabhav, Robert          | Prabhav wrote the instance variables, constructors, and setters. Robert Created the game loop with some assistance from GenAI.                   |
+| RoundResult           | Robert          | Wrote                   |
 | CardTest        | Shrey            | Wrote                   |
 | LinkedChainTest | Robert           | Wrote, GenAI assisted   |
 | DeckTest        | Jonathan         | Wrote, GenAI assisted   |
@@ -31,5 +32,10 @@ Attribution:
 | PlayerTest      | Shrey            | Wrote, GenAI assisted   |
 | OpponentTest    | Jonathan         | Wrote, GenAI assisted   |
 | TableTest       | Prabhav          | Wrote                   |
+| RoundResultTest           | Robert          | Wrote, GenAI assisted in finding bad input.                   |
 
 GenAI was used to mostly assist with the test cases, and in the case of Hand, help find bugs because of the complexity of the code. GenAI also helped guide the creation of the game loop.
+
+System Diagram:
+
+<img width="1280" height="960" alt="Group 4 - Project 2 CS 2114 SPEC(1)" src="https://github.com/user-attachments/assets/174487ed-b7fc-4004-8d78-0e5ca8cd7a58" />
