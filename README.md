@@ -32,4 +32,4 @@ GenAI was used to mostly assist with the test cases, and in the case of Hand, he
 
 System Diagram:
 
-<img width="1280" height="960" alt="Group 4 - Project 2 CS 2114 SPEC(1)" src="https://github.com/user-attachments/assets/174487ed-b7fc-4004-8d78-0e5ca8cd7a58" />
+<img width="640" height="480" alt="678072548-174487ed-b7fc-4004-8d78-0e5ca8cd7a58" src="https://github.com/user-attachments/assets/ce703fee-2d5a-46cf-8e95-da150f741391" />
